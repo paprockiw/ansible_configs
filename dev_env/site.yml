@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: True
+  become: True
+  become_user: paprockiw
+
+  vars:
+    home_dir: /home/paprockiw
+    vim_home: "{{ home_dir }}/.vim"
+    vim_bundle: "{{ vim_home }}/bundle"
+
+  roles:
+    - git
+    - tools 
+    - python
+    - vim

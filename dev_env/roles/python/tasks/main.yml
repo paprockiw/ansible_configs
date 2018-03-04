@@ -1,0 +1,16 @@
+---
+- name: Install Python & Python tools
+  apt:
+    name: python-dev
+    state: present
+
+- name: Install Pip
+  apt:
+    name: python-pip
+    state: present
+
+- name: Install Virtual Environment
+  apt:
+    name: python-virtualenv
+    state: present
+

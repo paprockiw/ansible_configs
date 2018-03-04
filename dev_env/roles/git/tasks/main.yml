@@ -1,0 +1,15 @@
+---
+- name: Ensure that git is installed
+  apt:
+    name: git
+    state: present
+
+- name: Ensure .git directory exists
+  file:
+    path: "{{ home_dir }}/.git/"
+    state: directory
+
+- name: Ensure that git config is installed
+  copy: 
+    src: "roles/git/files/git.conf"
+    dest: "{{ home_dir }}/.git/git.conf"

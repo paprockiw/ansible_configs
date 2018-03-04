@@ -1,0 +1,54 @@
+---
+- name: Install Vim & Plugins
+  apt: 
+    name: vim
+    state: present 
+
+- name: Ensure that vim home is in place
+  file: 
+    path: "{{ vim_home }}"
+    state: directory
+
+- name: Ensure that vim autoload is in place for Pathogen install
+  file: 
+    path: "{{ vim_home }}/autoload"
+    state: directory
+
+- name: Ensure that .vimrc file is installed
+  copy: 
+    src: roles/vim/files/.vimrc
+    dest: "{{ home_dir }}/.vimrc"
+   
+- name: Get Pathogen over HTTPS
+  get_url:
+    url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+    dest: "{{ vim_home }}/autoload/pathogen.vim"
+   
+- name: Install Vim Bundle directory 
+  file: 
+    path: "{{ vim_bundle }}"
+    state: directory
+   
+- name: Clone NERDTree for Vim
+  git:
+    repo: https://github.com/scrooloose/nerdtree.git
+    clone: True
+    dest: "{{ vim_bundle }}/nerdtree"
+   
+- name: Clone delimitMate for Vim
+  git:
+    repo: https://github.com/Raimondi/delimitMate.git
+    clone: True
+    dest: "{{ vim_bundle }}/delimitMate"
+   
+- name: Clone CTRL+P for Vim
+  git:
+    repo: https://github.com/kien/ctrlp.vim.git
+    clone: True
+    dest: "{{ vim_bundle }}/ctrlp"
+   
+- name: Clone CSV for Vim
+  git:
+    repo: https://github.com/chrisbra/csv.vim.git 
+    clone: True
+    dest: "{{ vim_bundle }}/csv"

@@ -1,0 +1,10 @@
+---
+- name: Ensure that Tmux is installed
+  apt:
+    name: tmux
+    state: present 
+
+- name: Ensure that CURL is installed
+  apt: 
+    name: curl
+    state: present
