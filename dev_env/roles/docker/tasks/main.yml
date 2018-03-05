@@ -1,2 +1,40 @@
 ---
-- name: Install Docker CE
+- block:
+  - name: Ensure apt-transport-https is installed
+    apt:
+      name: apt-transport-https
+      state: present
+
+  - name: Ensure ca-certs is installed
+    apt:
+      name: ca-certificates
+      state: present
+
+  - name: Ensure software-properties-common is installed
+    apt:
+      name: software-properties-common
+      state: present
+
+  - name: Get Docker apt-key
+    apt_key:
+      url: "https://download.docker.com/linux/ubuntu/gpg"
+      state: present
+  
+  - name: Add repository for Docker
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+      state: present
+      update_cache: yes
+  
+  - name: Ensure that Docker is installed
+    apt:
+      name: docker.io
+      state: present
+
+  - name: Make sure Docker is running
+    service:
+      name: docker
+      state: started
+
+  become: yes
+  become_user: root
