@@ -1,3 +1,3 @@
 #! /bin/bash
 
-ansible-playbook -c local dev_playbook.yml
+ansible-playbook -c local site.yml
