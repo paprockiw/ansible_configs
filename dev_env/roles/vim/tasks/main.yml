@@ -8,26 +8,36 @@
   file: 
     path: "{{ vim_home }}"
     state: directory
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
 
 - name: Ensure that vim autoload is in place for Pathogen install
   file: 
     path: "{{ vim_home }}/autoload"
     state: directory
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
 
 - name: Ensure that .vimrc file is installed
   copy: 
     src: roles/vim/files/.vimrc
     dest: "{{ home_dir }}/.vimrc"
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
    
 - name: Get Pathogen over HTTPS
   get_url:
     url: https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
     dest: "{{ vim_home }}/autoload/pathogen.vim"
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
    
 - name: Install Vim Bundle directory 
   file: 
     path: "{{ vim_bundle }}"
     state: directory
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
    
 - name: Clone NERDTree for Vim
   git:

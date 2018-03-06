@@ -8,8 +8,12 @@
   file:
     path: "{{ home_dir }}/.git/"
     state: directory
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"
 
 - name: Ensure that git config is installed
   copy: 
     src: "roles/git/files/git.conf"
     dest: "{{ home_dir }}/.git/git.conf"
+    owner: "{{ user_name}}"
+    group: "{{ user_name}}"

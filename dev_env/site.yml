@@ -3,10 +3,10 @@
   connection: local
   gather_facts: True
   become: True
-  become_user: paprockiw
 
   vars:
-    home_dir: /home/paprockiw
+    user_name: bill
+    home_dir: "/home/{{ user_name }}"
     vim_home: "{{ home_dir }}/.vim"
     vim_bundle: "{{ vim_home }}/bundle"
 
@@ -15,4 +15,3 @@
     - tools 
     - python
     - vim
-    - docker
